@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 class PostController extends ChangeNotifier {
   AppState state = AppState.initial;
   List<PostsEntity> posts = [];
+  String errorMessage = '';
   final PostsUseCase postsUseCase;
 
   PostController() : postsUseCase = PostsUseCase();
@@ -19,10 +20,9 @@ class PostController extends ChangeNotifier {
       state = AppState.success;
     } catch (_) {
       state = AppState.error;
+      errorMessage = 'Error al cargar posts';
     } finally {
       notifyListeners();
     }
   }
-
-  void savePost() {}
 }

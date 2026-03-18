@@ -72,11 +72,5 @@ void main() {
       expect(controller.posts, isEmpty);
       expect(states, [AppState.loading, AppState.error]);
     });
-
-    test('savePost keeps the current state with current implementation', () {
-      controller.savePost();
-
-      expect(controller.state, AppState.initial);
-    });
   });
 }

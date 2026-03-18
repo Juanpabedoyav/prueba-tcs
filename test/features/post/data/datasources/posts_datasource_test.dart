@@ -46,6 +46,7 @@ void main() {
             data: [
               {'userId': 1, 'id': 1, 'title': 'title', 'body': 'body'},
             ],
+            statusCode: 200,
             requestOptions: RequestOptions(path: '${Environment.baseUrl}/posts'),
           ),
         ),

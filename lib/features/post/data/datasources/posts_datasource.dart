@@ -12,9 +12,21 @@ class IPostsDataSource with ApiClientMixin implements PostsDataSource {
   Future<List<Map<String, dynamic>>> getPosts() async {
     try {
       final response = await client.get('${Environment.baseUrl}/posts');
+
+      if (response.statusCode != 200) {
+        throw CustomException(
+          message:
+              'Request failed with status ${response.statusCode}: ${response.statusMessage}',
+          response: response.data?.toString(),
+          request: response.requestOptions.toString(),
+          url: response.requestOptions.uri.toString(),
+          httpErrorCode: response.statusCode,
+        );
+      }
+
       final data = response.data;
 
-      final List<Map<String, dynamic>> posts = data
+      final posts = data
           .map<Map<String, dynamic>>(
             (post) => Map<String, dynamic>.from(post as Map),
           )
@@ -25,7 +37,7 @@ class IPostsDataSource with ApiClientMixin implements PostsDataSource {
         message: e.message,
         error: e.error,
         stackTrace: e.stackTrace,
-        response: e.response?.toString(),
+        response: e.response?.data?.toString(),
         request: e.requestOptions.toString(),
         url: e.requestOptions.uri.toString(),
         httpErrorCode: e.response?.statusCode,

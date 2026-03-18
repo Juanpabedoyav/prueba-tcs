@@ -32,6 +32,17 @@ class _PostListPageState extends State<PostListPage> {
             return const Center(child: CircularProgressIndicator());
           }
 
+          if (controller.state == AppState.error) {
+            return Center(
+              child: Column(
+                children: [
+                  const Text('Error al cargar posts'),
+                  Text(controller.errorMessage),
+                ],
+              ),
+            );
+          }
+
           return RefreshIndicator(
             onRefresh: () async {
               context.read<PostController>().getPosts();
@@ -43,13 +54,28 @@ class _PostListPageState extends State<PostListPage> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          context.push(ListRoutes.postDetail.path);
+                          context.push(
+                            ListRoutes.postDetail.path,
+                            extra: posts[index],
+                          );
                         },
-                        child: Column(
-                          children: [
-                            Text(posts[index].title),
-                            Text(posts[index].body),
-                          ],
+                        child: Container(
+                          margin: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.black, width: 1),
+                            color: Colors.white,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('UserId: ${posts[index].author}'),
+                              Text('Titulo: ${posts[index].title}'),
+                              Text('Texto: ${posts[index].body}'),
+                            ],
+                          ),
                         ),
                       );
                     },
