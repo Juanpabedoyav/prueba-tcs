@@ -47,7 +47,9 @@ void main() {
               {'userId': 1, 'id': 1, 'title': 'title', 'body': 'body'},
             ],
             statusCode: 200,
-            requestOptions: RequestOptions(path: '${Environment.baseUrl}/posts'),
+            requestOptions: RequestOptions(
+              path: '${Environment.baseUrl}/posts',
+            ),
           ),
         ),
       );
@@ -59,7 +61,9 @@ void main() {
     });
 
     test('getPosts throws CustomException when request fails', () async {
-      final requestOptions = RequestOptions(path: '${Environment.baseUrl}/posts');
+      final requestOptions = RequestOptions(
+        path: '${Environment.baseUrl}/posts',
+      );
       final dataSource = TestPostsDataSource(
         FakeApiClient(
           exception: DioException(
