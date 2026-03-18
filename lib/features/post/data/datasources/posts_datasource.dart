@@ -34,6 +34,7 @@ class IPostsDataSource with ApiClientMixin implements PostsDataSource {
       return posts;
     } on DioException catch (e) {
       throw CustomException(
+        userMessage: 'Error al cargar posts',
         message: e.message,
         error: e.error,
         stackTrace: e.stackTrace,

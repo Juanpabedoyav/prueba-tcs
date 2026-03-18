@@ -20,7 +20,11 @@ class PostsRepositoryImpl implements PostRepository {
 
       return entities;
     } catch (e, s) {
-      throw CustomException(message: e.toString(), stackTrace: s);
+      throw CustomException(
+        message: e.toString(),
+        stackTrace: s,
+        userCode: 'Error al cargar posts 1C',
+      );
     }
   }
 }

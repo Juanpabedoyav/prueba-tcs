@@ -35,9 +35,17 @@ class _PostListPageState extends State<PostListPage> {
           if (controller.state == AppState.error) {
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Error al cargar posts'),
-                  Text(controller.errorMessage),
+                  Text(
+                    controller.errorMessage,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: controller.getPosts,
+                    child: const Text('Reintentar'),
+                  ),
                 ],
               ),
             );
