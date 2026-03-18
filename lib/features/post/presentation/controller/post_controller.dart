@@ -12,7 +12,8 @@ class PostController extends ChangeNotifier {
   final ValueNotifier<PostUiEvent?> uiEvent = ValueNotifier<PostUiEvent?>(null);
   final PostsUseCase postsUseCase;
 
-  PostController() : postsUseCase = PostsUseCase();
+  PostController([PostsUseCase? postsUseCase])
+    : postsUseCase = postsUseCase ?? PostsUseCase();
 
   Future<void> getPosts() async {
     state = AppState.loading;

@@ -2,19 +2,12 @@ import 'package:challengetcs/features/post/domain/entities/posts_entity.dart';
 import 'package:challengetcs/features/post/domain/repositories/post_repository.dart';
 import 'package:challengetcs/features/post/domain/usecases/posts_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockPostRepository extends Mock implements PostRepository {
-  @override
-  Future<List<PostsEntity>> getPosts() {
-    return super.noSuchMethod(
-          Invocation.method(#getPosts, []),
-          returnValue: Future.value(<PostsEntity>[]),
-          returnValueForMissingStub: Future.value(<PostsEntity>[]),
-        )
-        as Future<List<PostsEntity>>;
-  }
-}
+import 'posts_usecase_test.mocks.dart';
+
+@GenerateMocks([PostRepository])
 
 void main() {
   group('PostsUseCase.getPosts', () {

@@ -1,5 +1,5 @@
 import 'package:challengetcs/features/post/presentation/controller/post_controller.dart';
-import 'package:challengetcs/features/post/presentation/controller/post_ui_event.dart';
+import 'package:challengetcs/features/post/presentation/controller/post_ui_event_controller.dart';
 import 'package:flutter/material.dart';
 
 class PostErrorListener extends StatefulWidget {

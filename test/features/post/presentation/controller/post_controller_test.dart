@@ -3,19 +3,12 @@ import 'package:challengetcs/features/post/domain/entities/posts_entity.dart';
 import 'package:challengetcs/features/post/domain/usecases/posts_usecase.dart';
 import 'package:challengetcs/features/post/presentation/controller/post_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockPostsUseCase extends Mock implements PostsUseCase {
-  @override
-  Future<List<PostsEntity>> getPosts() {
-    return super.noSuchMethod(
-          Invocation.method(#getPosts, []),
-          returnValue: Future.value(<PostsEntity>[]),
-          returnValueForMissingStub: Future.value(<PostsEntity>[]),
-        )
-        as Future<List<PostsEntity>>;
-  }
-}
+import 'post_controller_test.mocks.dart';
+
+@GenerateMocks([PostsUseCase])
 
 void main() {
   group('PostController', () {
@@ -24,7 +17,7 @@ void main() {
 
     setUp(() {
       mockPostsUseCase = MockPostsUseCase();
-      controller = PostController();
+      controller = PostController(mockPostsUseCase);
     });
 
     test('starts with initial state', () {

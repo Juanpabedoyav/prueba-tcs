@@ -2,19 +2,12 @@ import 'package:challengetcs/core/exception/custom_exception.dart';
 import 'package:challengetcs/features/post/data/datasources/posts_datasource.dart';
 import 'package:challengetcs/features/post/data/repositories_impl/posts_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-class MockPostsDataSource extends Mock implements PostsDataSource {
-  @override
-  Future<List<Map<String, dynamic>>> getPosts() {
-    return super.noSuchMethod(
-          Invocation.method(#getPosts, []),
-          returnValue: Future.value(<Map<String, dynamic>>[]),
-          returnValueForMissingStub: Future.value(<Map<String, dynamic>>[]),
-        )
-        as Future<List<Map<String, dynamic>>>;
-  }
-}
+import 'posts_repository_impl_test.mocks.dart';
+
+@GenerateMocks([PostsDataSource])
 
 void main() {
   group('PostsRepositoryImpl', () {
