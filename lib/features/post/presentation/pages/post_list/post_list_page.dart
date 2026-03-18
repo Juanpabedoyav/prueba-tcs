@@ -71,9 +71,8 @@ class _PostListPageState extends State<PostListPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text('UserId: ${posts[index].author}'),
-                              Text('Titulo: ${posts[index].title}'),
-                              Text('Texto: ${posts[index].body}'),
+                              Text('Title: ${posts[index].title}'),
+                              Text('Body: ${posts[index].body}'),
                             ],
                           ),
                         ),

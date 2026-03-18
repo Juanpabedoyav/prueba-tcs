@@ -14,6 +14,12 @@ class AppRouter {
       ),
       GoRoute(
         path: ListRoutes.postDetail.path,
+        redirect: (context, state) {
+          if (state.extra is! PostsEntity) {
+            return ListRoutes.postsList.path;
+          }
+          return null;
+        },
         builder: (context, state) {
           final post = state.extra as PostsEntity;
           return PostDetailPage(post: post);
